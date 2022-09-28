@@ -37,3 +37,37 @@ variable "subnet_id" {
     description = "Instance network subnet id"
     type = string
 }
+
+variable "security_group_name" {
+    description = "Security group name"
+    type = string
+}
+
+variable "rsa_key_name" {
+    description = "AWS KeyManagement key name"
+    type = string
+    default = null
+}
+
+variable "instance_profile_name" {
+    description = "AWS IAM EC2 Profile name"
+    type = string
+    default = null
+}
+
+variable "instance_user_data" {
+    description = "AWS IAM EC2 user data"
+    type = string
+    default = null
+}
+
+variable "ec2_lifecycle" {
+    description = "EC2 lifecycle"
+    type = bool    
+    default = false
+}
+
+variable "ec2_tags" {
+    type = map(string)
+    default = null
+}
