@@ -16,6 +16,7 @@ variable "ingress_ports" {
 variable "my_global_ip" {
     description = "Global IP Address using in runtime"
     type = string
+    default = "0.0.0.0/0"
 }
 
 variable "ami_id" {
