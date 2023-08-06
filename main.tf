@@ -10,7 +10,7 @@ resource "aws_security_group" "sg" {
     }
 }
 
-resource "aws_security_group_rule" "sg_tcp_in" {
+resource "aws_security_group_rule" "sg_tcp_in_sg_id" {
     count = var.source_security_group_id!="" ? length(var.ingress_ports) : 0
     
     protocol = "tcp"
@@ -21,7 +21,7 @@ resource "aws_security_group_rule" "sg_tcp_in" {
     security_group_id = aws_security_group.sg.id
 }
 
-resource "aws_security_group_rule" "sg_tcp_in" {
+resource "aws_security_group_rule" "sg_tcp_in_cidr" {
     count = var.source_security_group_id!="" ? 0 : length(var.ingress_ports)
     
     protocol = "tcp"
