@@ -11,13 +11,24 @@ resource "aws_security_group" "sg" {
 }
 
 resource "aws_security_group_rule" "sg_tcp_in" {
-    count = length(var.ingress_ports)
+    count = var.source_security_group_id!="" ? length(var.ingress_ports) : 0
     
     protocol = "tcp"
     type = "ingress"
     from_port = var.ingress_ports[count.index]
     to_port = var.ingress_ports[count.index]
-    cidr_blocks = [var.my_global_ip]
+    source_security_group_id = var.source_security_group_id
+    security_group_id = aws_security_group.sg.id
+}
+
+resource "aws_security_group_rule" "sg_tcp_in" {
+    count = var.source_security_group_id!="" ? 0 : length(var.ingress_ports)
+    
+    protocol = "tcp"
+    type = "ingress"
+    from_port = var.ingress_ports[count.index]
+    to_port = var.ingress_ports[count.index]
+    cidr_blocks = var.source_cidr_block
     security_group_id = aws_security_group.sg.id
 }
 

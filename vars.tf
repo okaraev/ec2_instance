@@ -1,8 +1,3 @@
-variable "REGION" {
-  description = "AWS Region"
-  type = string
-}
-
 variable "vpc_id" {
   description = "Virtual Private Cloud id"
   type = string
@@ -13,10 +8,15 @@ variable "ingress_ports" {
     type = list(number)
 }
 
-variable "my_global_ip" {
-    description = "Global IP Address using in runtime"
+variable "source_security_group_id" {
+    description = "Source Security Group ID"
     type = string
-    default = "0.0.0.0/0"
+}
+
+variable "source_cidr_block" {
+    description = "Source CIDR block"
+    type = list(string)
+    default = [ "0.0.0.0/0" ]
 }
 
 variable "ami_id" {
