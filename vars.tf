@@ -11,6 +11,7 @@ variable "ingress_ports" {
 variable "source_security_group_id" {
     description = "Source Security Group ID"
     type = string
+    default = ""
 }
 
 variable "source_cidr_block" {
